@@ -1,0 +1,13 @@
+body {
+  margin: 20px;
+  font-family: 'Roboto', sans-serif;
+}
+
+#app {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+textarea {
+  resize: none;
+}

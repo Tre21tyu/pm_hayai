@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Sorting and Grouping App</title>
+  <!-- Material Design Components -->
+  <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+  <script defer src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app" class="mdc-typography">
+    <h1 class="mdc-typography--headline4">Number Sorting and Grouping App</h1>
+    <div class="mdc-text-field mdc-text-field--textarea">
+      <textarea id="inputData" class="mdc-text-field__input" rows="5" placeholder="Enter numbers, one per line..."></textarea>
+      <div class="mdc-notched-outline">
+        <div class="mdc-notched-outline__leading"></div>
+        <div class="mdc-notched-outline__notch">
+          <label for="inputData" class="mdc-floating-label">Input Data</label>
+        </div>
+        <div class="mdc-notched-outline__trailing"></div>
+      </div>
+    </div>
+    <br>
+    <button id="runButton" class="mdc-button mdc-button--raised">
+      <span class="mdc-button__label">Run Function</span>
+    </button>
+    <br><br>
+    <div class="mdc-text-field mdc-text-field--textarea">
+      <textarea id="outputData" class="mdc-text-field__input" rows="5" readonly></textarea>
+      <div class="mdc-notched-outline">
+        <div class="mdc-notched-outline__leading"></div>
+        <div class="mdc-notched-outline__notch">
+          <label for="outputData" class="mdc-floating-label">Output Data</label>
+        </div>
+        <div class="mdc-notched-outline__trailing"></div>
+      </div>
+    </div>
+  </div>
+  <script src="scripts.js"></script>
+</body>
+</html>
