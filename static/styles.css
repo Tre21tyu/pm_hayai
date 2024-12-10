@@ -40,6 +40,7 @@ body {
   width: 100%;
   z-index: 20;
   text-align: center;
+  pointer-events: none;
 }
 
 .ez-header {
@@ -53,13 +54,25 @@ body {
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
   transition: all 0.3s ease;
+  display: inline-block;
 }
 
 .ez-highlight:hover {
   color: #A0522D;
-  text-shadow: 0 0 15px rgba(160, 82, 45, 0.7);
-  transform: scale(1.1);
+  animation: ezScaleOut 1.5s infinite;
   cursor: pointer;
+}
+
+@keyframes ezScaleOut {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .centered-container {
@@ -68,7 +81,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 10vh; /* Responsive top padding */
+  padding-top: 20vh; /* Responsive top padding */
+  margin-top: 50px; /* Add spacing between header and input/output */
 }
 
 .input-wrapper {
@@ -76,26 +90,27 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 30px; /* Add spacing between input/output and button */
 }
 
 .input-group {
-  width: 35%;
-  max-width: 400px;
-  margin: 0 2vw; /* Responsive margin */
+  width: 40%; /* Increased from 35% */
+  max-width: 500px; /* Increased max-width */
+  margin: 0 3vw; /* Increased margin between boxes */
 }
 
 .button-container {
-  display: flex;
+  display: fixed;
   justify-content: center;
   align-items: center;
 }
 
 textarea {
   width: 100%;
-  height: 40vh; /* Responsive height */
-  max-height: 400px;
-  min-height: 200px;
-  resize: both;
+  height: 60vh; /* Increased height */
+  max-height: 600px; /* Increased max-height */
+  min-height: 300px; /* Increased min-height */
+  resize: vertical;
   border: 2px solid #e6d8c3;
   box-shadow: 0 0 10px rgba(230, 216, 195, 0.5);
   transition: box-shadow 0.3s ease;
@@ -108,17 +123,15 @@ textarea:focus {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
-/* Adjusting placeholder text size for the input */
 textarea::placeholder {
-  font-size: 1.2em; /* Make the placeholder text bigger */
-  color: #888; /* A lighter color for the placeholder */
+  font-size: 1.2em;
+  color: #888;
   font-weight: bold;
 }
 
-/* Placeholder text for the output box */
 #outputData::placeholder {
-  font-size: 1.2em; /* Matching the size with the input box */
-  color: #888; /* Placeholder text color */
+  font-size: 1.2em;
+  color: #888;
   font-weight: bold;
 }
 
@@ -127,10 +140,11 @@ textarea::placeholder {
   background-color: #f0e6d2;
   border: none;
   color: black;
-  padding: clamp(15px, 2vw, 20px) clamp(30px, 4vw, 40px);
-  font-size: clamp(18px, 2.5vw, 22px);
+  padding: clamp(20px, 2.5vw, 25px) clamp(40px, 5vw, 50px);
+  font-size: clamp(20px, 3vw, 24px);
   font-weight: bold;
   white-space: nowrap;
+  margin-top: 30px; /* Add spacing between input/output and button */
 }
 
 #runButton:hover {
@@ -138,7 +152,6 @@ textarea::placeholder {
   box-shadow: 0 0 15px rgba(240, 230, 210, 0.8);
 }
 
-/* Responsive adjustments for smaller screens */
 @media screen and (max-width: 768px) {
   .input-wrapper {
     flex-direction: column;
@@ -152,29 +165,4 @@ textarea::placeholder {
   .button-container {
     margin: 20px 0;
   }
-}
-
-/* Custom scrollbar styles for the textareas */
-textarea::-webkit-scrollbar {
-  width: 10px; /* Width of the scrollbar */
-  height: 10px; /* Height for horizontal scrollbar (if necessary) */
-}
-
-textarea::-webkit-scrollbar-thumb {
-  background-color: #888; /* Color of the scrollbar thumb */
-  border-radius: 10px; /* Rounded corners for the thumb */
-  border: 3px solid #f4f4f4; /* Space between thumb and track */
-}
-
-textarea::-webkit-scrollbar-thumb:hover {
-  background-color: #555; /* Darker color when hovered */
-}
-
-textarea::-webkit-scrollbar-track {
-  background-color: #f4f4f4; /* Color of the track (background) */
-  border-radius: 10px; /* Rounded corners for the track */
-}
-
-textarea::-webkit-scrollbar-track:hover {
-  background-color: #e6e6e6; /* Slightly darker track when hovered */
 }
