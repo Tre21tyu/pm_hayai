@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Number Sorting and Grouping App</title>
-  <!-- Material Design Components -->
-  <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
-  <script defer src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-  <link rel="stylesheet" href="static/styles.css">
-</head>
-<body>
-  <div id="app" class="mdc-typography">
-    <h1 class="mdc-typography--headline4">Number Sorting and Grouping App</h1>
-    <div class="mdc-text-field mdc-text-field--textarea">
-      <textarea id="inputData" class="mdc-text-field__input" rows="5" placeholder="Enter numbers, one per line..."></textarea>
-      <div class="mdc-notched-outline">
-        <div class="mdc-notched-outline__leading"></div>
-        <div class="mdc-notched-outline__notch">
-          <label for="inputData" class="mdc-floating-label">Input Data</label>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Sorting and Grouping App</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/styles.css">
+  </head>
+  <body>
+    <div id="app" class="container mt-5 text-center">
+      <div class="header-container">
+        <h1 class="text-center mb-5 ez-header"><span class="ez-highlight">Ez</span> Medimizer Work Order Entry</h1>
+      </div>
+
+      <!-- Centered container for input groups and button -->
+      <div class="centered-container">
+        <div class="input-wrapper d-flex justify-content-center align-items-center">
+          <!-- Input Group 1 (left) -->
+          <div class="input-group input-group-left">
+            <textarea id="inputData" class="form-control rounded" rows="5" placeholder="Enter numbers, one per line..."></textarea>
+          </div>
+
+          <!-- Button in the middle -->
+          <div class="button-container">
+            <button id="runButton" class="btn btn-beige rounded">
+              Run Function
+            </button>
+          </div>
+
+          <!-- Input Group 2 (right) -->
+          <div class="input-group input-group-right">
+            <textarea id="outputData" class="form-control rounded" rows="5" readonly placeholder="Place the result in the left and right sequence of the WO menu respectively!"></textarea>
+          </div>
         </div>
-        <div class="mdc-notched-outline__trailing"></div>
       </div>
     </div>
-    <br>
-    <button id="runButton" class="mdc-button mdc-button--raised">
-      <span class="mdc-button__label">Run Function</span>
-    </button>
-    <br><br>
-    <div class="mdc-text-field mdc-text-field--textarea">
-      <textarea id="outputData" class="mdc-text-field__input" rows="5" readonly></textarea>
-      <div class="mdc-notched-outline">
-        <div class="mdc-notched-outline__leading"></div>
-        <div class="mdc-notched-outline__notch">
-          <label for="outputData" class="mdc-floating-label">Output Data</label>
-        </div>
-        <div class="mdc-notched-outline__trailing"></div>
-      </div>
-    </div>
-  </div>
-  <script src="static/scripts.js"></script>
-</body>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="static/scripts.js"></script>
+  </body>
 </html>

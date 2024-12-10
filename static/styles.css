@@ -1,13 +1,180 @@
+@font-face {
+  font-family: 'Comic Sans MS';
+  src: url('./fonts/Comic Sans MS.ttf') format('truetype');
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Comic Sans MS', sans-serif;
+  background-color: #f4f4f4;
+}
+
 body {
-  margin: 20px;
-  font-family: 'Roboto', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 #app {
-  max-width: 600px;
-  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.header-container {
+  position: absolute;
+  top: 5vh; /* Responsive vertical positioning */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: 20;
+  text-align: center;
+}
+
+.ez-header {
+  font-size: clamp(48px, 6vw, 72px); /* Responsive font size */
+  margin-top: 145px;
+  line-height: 1;
+}
+
+.ez-highlight {
+  color: #8B4513;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
+  transition: all 0.3s ease;
+}
+
+.ez-highlight:hover {
+  color: #A0522D;
+  text-shadow: 0 0 15px rgba(160, 82, 45, 0.7);
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.centered-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10vh; /* Responsive top padding */
+}
+
+.input-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-group {
+  width: 35%;
+  max-width: 400px;
+  margin: 0 2vw; /* Responsive margin */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 textarea {
-  resize: none;
+  width: 100%;
+  height: 40vh; /* Responsive height */
+  max-height: 400px;
+  min-height: 200px;
+  resize: both;
+  border: 2px solid #e6d8c3;
+  box-shadow: 0 0 10px rgba(230, 216, 195, 0.5);
+  transition: box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #d4b886;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Adjusting placeholder text size for the input */
+textarea::placeholder {
+  font-size: 1.2em; /* Make the placeholder text bigger */
+  color: #888; /* A lighter color for the placeholder */
+  font-weight: bold;
+}
+
+/* Placeholder text for the output box */
+#outputData::placeholder {
+  font-size: 1.2em; /* Matching the size with the input box */
+  color: #888; /* Placeholder text color */
+  font-weight: bold;
+}
+
+#runButton {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #f0e6d2;
+  border: none;
+  color: black;
+  padding: clamp(15px, 2vw, 20px) clamp(30px, 4vw, 40px);
+  font-size: clamp(18px, 2.5vw, 22px);
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+#runButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(240, 230, 210, 0.8);
+}
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+  .input-wrapper {
+    flex-direction: column;
+  }
+
+  .input-group {
+    width: 80%;
+    margin: 10px 0;
+  }
+
+  .button-container {
+    margin: 20px 0;
+  }
+}
+
+/* Custom scrollbar styles for the textareas */
+textarea::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+  height: 10px; /* Height for horizontal scrollbar (if necessary) */
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners for the thumb */
+  border: 3px solid #f4f4f4; /* Space between thumb and track */
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Darker color when hovered */
+}
+
+textarea::-webkit-scrollbar-track {
+  background-color: #f4f4f4; /* Color of the track (background) */
+  border-radius: 10px; /* Rounded corners for the track */
+}
+
+textarea::-webkit-scrollbar-track:hover {
+  background-color: #e6e6e6; /* Slightly darker track when hovered */
 }
