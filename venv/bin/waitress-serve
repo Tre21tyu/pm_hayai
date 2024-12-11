@@ -1,4 +1,4 @@
-#!/home/lonniepee/lonniepee/desktop/flask/pm_hayai/venv/bin/python3.11
+#!/home/lonniepee/lonniepee/desktop/flask/projects/pm_hayai/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

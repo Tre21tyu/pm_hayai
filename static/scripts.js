@@ -69,14 +69,14 @@ document.querySelector('.ez-highlight').addEventListener('click', () => {
     "'Courier New', monospace",
     "'Georgia', serif"
   ];
-  
+
   // Track the current font index
   let currentFontIndex = parseInt(document.body.dataset.fontIndex || "0");
 
   // Update to the next font in the list
   currentFontIndex = (currentFontIndex + 1) % fonts.length;
   document.body.dataset.fontIndex = currentFontIndex; // Save the index
-  
+
   // Apply the new font to the page
   const newFont = fonts[currentFontIndex];
   document.documentElement.style.fontFamily = newFont;
