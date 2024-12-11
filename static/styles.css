@@ -34,28 +34,18 @@ body {
 
 .header-container {
   position: absolute;
-  top: 5vh; 
+  top: 5vh;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
   z-index: 20;
   text-align: center;
-  pointer-events: none; /* Prevent header from interfering with interactions */
-}
-
-.centered-container {
-  width: 100%;
-  max-width: 1200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 20vh; /* Increased top padding to create more space from header */
-  margin-top: 50px;
+  margin-top: 145px;
 }
 
 .ez-header {
-  font-size: clamp(48px, 6vw, 72px); /* Responsive font size */
-  margin-top: 145px;
+  font-size: clamp(48px, 6vw, 72px);
+  margin: 0;
   line-height: 1;
 }
 
@@ -63,14 +53,12 @@ body {
   color: #8B4513;
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
-  transition: all 0.3s ease;
   display: inline-block;
+  transition: color 0.3s ease;
 }
 
 .ez-highlight:hover {
   color: #A0522D;
-  animation: ezScaleOut 1.5s 1;
-  cursor: pointer;
 }
 
 @keyframes ezScaleOut {
@@ -78,7 +66,7 @@ body {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.5);
+    transform: scale(5.1);
   }
   100% {
     transform: scale(1);
@@ -91,8 +79,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 10vh; /* Responsive top padding */
-  margin-top: 50px; /* Add spacing between header and input/output */
+  padding-top: 10vh;
+  margin-top: 50px;
 }
 
 .input-wrapper {
@@ -100,26 +88,20 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 30px; /* Add spacing between input/output and button */
+  margin-bottom: 30px;
 }
 
 .input-group {
-  width: 40%; /* Increased from 35% */
-  max-width: 500px; /* Increased max-width */
-  margin: 0 3vw; /* Increased margin between boxes */
-}
-
-.button-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 40%;
+  max-width: 500px;
+  margin: 0 3vw;
 }
 
 textarea {
   width: 100%;
-  height: 60vh; /* Increased height */
-  max-height: 600px; /* Increased max-height */
-  min-height: 300px; /* Increased min-height */
+  height: 60vh;
+  max-height: 600px;
+  min-height: 300px;
   resize: both;
   border: 2px solid #e6d8c3;
   box-shadow: 0 0 10px rgba(230, 216, 195, 0.5);
@@ -139,12 +121,6 @@ textarea::placeholder {
   font-weight: bold;
 }
 
-#outputData::placeholder {
-  font-size: 1.2em;
-  color: #888;
-  font-weight: bold;
-}
-
 #runButton {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   background-color: #f0e6d2;
@@ -154,35 +130,13 @@ textarea::placeholder {
   font-size: clamp(20px, 3vw, 24px);
   font-weight: bold;
   white-space: nowrap;
-  margin-top: 30px; /* Add spacing between input/output and button */
+  margin-top: 30px;
 }
 
 #runButton:hover {
   transform: scale(1.1);
   box-shadow: 0 0 15px rgba(240, 230, 210, 0.8);
 }
-
-@media screen and (max-width: 768px) {
-  .input-wrapper {
-    flex-direction: column;
-  }
-
-  .input-group {
-    width: 80%;
-    margin: 10px 0;
-  }
-
-  .button-container {
-    margin: 20px 0;
-  }
-}
-
-/* Custom scrollbar styles for the textareas */
-textarea::-webkit-scrollbar {
-  width: 10px; /* Width of the scrollbar */
-  height: 10px; /* Height for horizontal scrollbar (if necessary) */
-}
-
 textarea::-webkit-scrollbar-thumb {
   background-color: #888; /* Color of the scrollbar thumb */
   border-radius: 10px; /* Rounded corners for the thumb */

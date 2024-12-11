@@ -45,3 +45,40 @@ document.getElementById('runButton').addEventListener('click', () => {
   const outputData = sortAndGroupColumnData(inputData);
   document.getElementById('outputData').value = outputData;
 });
+
+
+document.querySelectorAll('.ez-highlight').forEach(element => {
+  element.addEventListener('mouseenter', () => {
+    // Add the animation class
+    element.style.animation = 'ezScaleOut 1.1s ease-in-out forwards';
+
+    // Remove the animation class after the animation duration
+    element.addEventListener('animationend', () => {
+      element.style.animation = '';
+    }, { once: true });
+  });
+});
+
+
+document.querySelector('.ez-highlight').addEventListener('click', () => {
+  // List of fonts to toggle through
+  const fonts = [
+    "'Comic Sans MS', sans-serif",
+    "'Lato', sans-serif",
+    "'Arial', sans-serif",
+    "'Courier New', monospace",
+    "'Georgia', serif"
+  ];
+  
+  // Track the current font index
+  let currentFontIndex = parseInt(document.body.dataset.fontIndex || "0");
+
+  // Update to the next font in the list
+  currentFontIndex = (currentFontIndex + 1) % fonts.length;
+  document.body.dataset.fontIndex = currentFontIndex; // Save the index
+  
+  // Apply the new font to the page
+  const newFont = fonts[currentFontIndex];
+  document.documentElement.style.fontFamily = newFont;
+  document.body.style.fontFamily = newFont;
+});
