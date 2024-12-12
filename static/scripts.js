@@ -64,12 +64,13 @@ document.addEventListener('mouseenter', (event) => {
 const placeholders = {
   english: {
     input: "Paste data from excel, or enter one number per line",
-    output: "Medimizer data will appear here"
+    output: "Medimizer data will appear here",
+    runButton: "パターンを見つける"
   },
   japanese: {
     input: "ここにエクセルから数値を入力する",
-    output: "メディマイザーに数字を貼り付ける"
-    output: ""
+    output: "メディマイザーに数字を貼り付ける",
+    runButton: "パターンを見つける"
   }
 };
 
@@ -110,22 +111,22 @@ document.addEventListener('click', (event) => {
     // Update header text and mode
     const headerSpan = document.querySelector('.ez-header .ez-highlight');
     const headerText = document.querySelector('.ez-header');
-    
     if (isJapaneseMode) {
       headerSpan.textContent = '早い';
       headerText.innerHTML = '<span class="ez-highlight">早い</span>ピーエム整理ツール';
-      
+
       // Update placeholders
       document.getElementById('inputData').placeholder = placeholders.japanese.input;
       document.getElementById('outputData').placeholder = placeholders.japanese.output;
-      document.getElementById('runButton').placeholder = placeholders.japanese.runButton;
+      document.getElementById('runButton').textContent = 'パターンを見つける'; // Change button text
     } else {
       headerSpan.textContent = 'Ez';
       headerText.innerHTML = '<span class="ez-highlight">Ez</span> MM Work Order Entry';
-      
+
       // Restore English placeholders
       document.getElementById('inputData').placeholder = placeholders.english.input;
       document.getElementById('outputData').placeholder = placeholders.english.output;
-    }
+      document.getElementById('runButton').textContent = 'Run Function'; // Restore original button text
+    } 
   }
 }, true);
