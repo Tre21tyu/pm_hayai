@@ -55,6 +55,7 @@ body {
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
   display: inline-block;
+  cursor: pointer;
   transition: color 0.3s ease;
 }
 
@@ -67,7 +68,7 @@ body {
     transform: scale(1);
   }
   50% {
-    transform: scale(5.1);
+    transform: scale(3.1);
   }
   100% {
     transform: scale(1);

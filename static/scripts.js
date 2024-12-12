@@ -46,9 +46,10 @@ document.getElementById('runButton').addEventListener('click', () => {
   document.getElementById('outputData').value = outputData;
 });
 
-
-document.querySelectorAll('.ez-highlight').forEach(element => {
-  element.addEventListener('mouseenter', () => {
+// Use event delegation for mouseenter animation
+document.addEventListener('mouseenter', (event) => {
+  const element = event.target.closest('.ez-highlight');
+  if (element) {
     // Add the animation class
     element.style.animation = 'ezScaleOut 1.1s ease-in-out forwards';
 
@@ -56,29 +57,75 @@ document.querySelectorAll('.ez-highlight').forEach(element => {
     element.addEventListener('animationend', () => {
       element.style.animation = '';
     }, { once: true });
-  });
-});
+  }
+}, true);
 
+// Create a map for placeholders
+const placeholders = {
+  english: {
+    input: "Paste data from excel, or enter one number per line",
+    output: "Medimizer data will appear here"
+  },
+  japanese: {
+    input: "ここにエクセルから数値を入力する",
+    output: "メディマイザーに数字を貼り付ける"
+    output: ""
+  }
+};
 
-document.querySelector('.ez-highlight').addEventListener('click', () => {
-  // List of fonts to toggle through
-  const fonts = [
-    "'Comic Sans MS', sans-serif",
-    "'Lato', sans-serif",
-    "'Arial', sans-serif",
-    "'Courier New', monospace",
-    "'Georgia', serif"
-  ];
+// List of fonts to toggle through
+const fonts = [
+  { name: "'Comic Sans MS', sans-serif", isJapanese: false },
+  { name: "'Lato', sans-serif", isJapanese: false },
+  { name: "'Arial', sans-serif", isJapanese: false },
+  { name: "'Courier New', monospace", isJapanese: false },
+  { name: "'Georgia', serif", isJapanese: false },
+  { name: "'Noto Sans JP', sans-serif", isJapanese: true },
+];
 
-  // Track the current font index
-  let currentFontIndex = parseInt(document.body.dataset.fontIndex || "0");
+// Track the application mode
+let isJapaneseMode = false;
+let currentFontIndex = 0;
 
-  // Update to the next font in the list
-  currentFontIndex = (currentFontIndex + 1) % fonts.length;
-  document.body.dataset.fontIndex = currentFontIndex; // Save the index
+// Use event delegation for click events
+document.addEventListener('click', (event) => {
+  const element = event.target.closest('.ez-header .ez-highlight');
+  if (element) {
+    // Toggle through fonts
+    currentFontIndex = (currentFontIndex + 1) % fonts.length;
 
-  // Apply the new font to the page
-  const newFont = fonts[currentFontIndex];
-  document.documentElement.style.fontFamily = newFont;
-  document.body.style.fontFamily = newFont;
-});
+    // Check if we've reached a Japanese font
+    if (fonts[currentFontIndex].isJapanese) {
+      isJapaneseMode = true;
+    } else if (isJapaneseMode) {
+      // If we're in Japanese mode and hit a non-Japanese font, exit Japanese mode
+      isJapaneseMode = false;
+    }
+
+    // Apply the new font to the page
+    const newFont = fonts[currentFontIndex].name;
+    document.documentElement.style.fontFamily = newFont;
+    document.body.style.fontFamily = newFont;
+
+    // Update header text and mode
+    const headerSpan = document.querySelector('.ez-header .ez-highlight');
+    const headerText = document.querySelector('.ez-header');
+    
+    if (isJapaneseMode) {
+      headerSpan.textContent = '早い';
+      headerText.innerHTML = '<span class="ez-highlight">早い</span>ピーエム整理ツール';
+      
+      // Update placeholders
+      document.getElementById('inputData').placeholder = placeholders.japanese.input;
+      document.getElementById('outputData').placeholder = placeholders.japanese.output;
+      document.getElementById('runButton').placeholder = placeholders.japanese.runButton;
+    } else {
+      headerSpan.textContent = 'Ez';
+      headerText.innerHTML = '<span class="ez-highlight">Ez</span> MM Work Order Entry';
+      
+      // Restore English placeholders
+      document.getElementById('inputData').placeholder = placeholders.english.input;
+      document.getElementById('outputData').placeholder = placeholders.english.output;
+    }
+  }
+}, true);

@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PM Sorter</title>
-    <!-- Add a favicon link -->
-    <link rel="icon" type="image/png" href="/static/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="./static/favicon/favicon.ico">
     <link rel="stylesheet" href="static/styles.css">
   </head>
   <body>
@@ -21,19 +21,19 @@
         <div class="input-wrapper d-flex justify-content-center align-items-center">
           <!-- Input Group 1 (left) -->
           <div class="input-group input-group-left">
-            <textarea autofocus id="inputData" class="form-control rounded" rows="5" placeholder="Paste data from excel, or enter one number per line"></textarea
+            <textarea autofocus id="inputData" class="form-control rounded" rows="5" placeholder="Paste data from excel, or enter one number per line"></textarea>
           </div>
 
           <!-- Button in the middle -->
           <div class="button-container">
             <button id="runButton" class="btn btn-beige rounded">
-              Run Function
+              Find patterns
             </button>
           </div>
 
           <!-- Input Group 2 (right) -->
           <div class="input-group input-group-right">
-            <textarea id="outputData" class="form-control rounded" rows="5" readonly></textarea>
+            <textarea id="outputData" class="form-control rounded" rows="5" readonly placeholder="Use the Reassign WO fn in medimizer to make for speedy work order reassignment"></textarea>
           </div>
         </div>
       </div>
