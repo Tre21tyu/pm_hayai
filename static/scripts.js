@@ -131,12 +131,27 @@ document.addEventListener('click', (event) => {
   }
 }, true);
 
+// Store default placeholders
+// Store default placeholders
+const defaultPlaceholders = {
+  inputData: "Paste data from excel, or enter one number per line",
+  outputData: "Use the Reassign WO fn in medimizer to make for speedy work order reassignment"
+};
+
+// Initialize empty placeholders and store defaults on page load
+document.addEventListener('DOMContentLoaded', () => {
+  const textareas = document.querySelectorAll('textarea');
+  textareas.forEach(textarea => {
+    textarea.setAttribute('data-original-placeholder', textarea.placeholder);
+    textarea.placeholder = '';
+  });
+});
+
 // Toggle help text functionality
 document.getElementById('helpTextToggle').addEventListener('change', (event) => {
   const textareas = document.querySelectorAll('textarea');
   textareas.forEach(textarea => {
     if (!event.target.checked) {
-      textarea.setAttribute('data-original-placeholder', textarea.placeholder);
       textarea.placeholder = '';
     } else {
       const originalPlaceholder = textarea.getAttribute('data-original-placeholder');
@@ -175,12 +190,11 @@ document.querySelector('.close-video').addEventListener('click', () => {
   videoFrame.innerHTML = ''; // Remove iframe content
   videoContainer.classList.add('d-none');
 });
-
-//// Add this to your existing JavaScript
-//document.addEventListener('DOMContentLoaded', () => {
-//  // Force textareas to maximum height
-//  const textareas = document.querySelectorAll('textarea');
-//  textareas.forEach(textarea => {
-//    textarea.style.height = '530px';
-//  });
-//});
+// Add this to your existing JavaScript
+document.addEventListener('DOMContentLoaded', () => {
+  // Force textareas to maximum height
+  const textareas = document.querySelectorAll('textarea');
+  textareas.forEach(textarea => {
+    textarea.style.height = '530px';
+  });
+});

@@ -220,3 +220,20 @@ textarea::-webkit-scrollbar-track:hover {
   border: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
+/* Add the vignette container */
+#app::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none; /* Allows clicking through the overlay */
+  background: radial-gradient(
+    ellipse at center,
+    rgba(244, 244, 244, 0) 50%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  z-index: 10;
+}
