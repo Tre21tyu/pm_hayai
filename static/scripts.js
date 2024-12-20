@@ -130,3 +130,57 @@ document.addEventListener('click', (event) => {
     } 
   }
 }, true);
+
+// Toggle help text functionality
+document.getElementById('helpTextToggle').addEventListener('change', (event) => {
+  const textareas = document.querySelectorAll('textarea');
+  textareas.forEach(textarea => {
+    if (!event.target.checked) {
+      textarea.setAttribute('data-original-placeholder', textarea.placeholder);
+      textarea.placeholder = '';
+    } else {
+      const originalPlaceholder = textarea.getAttribute('data-original-placeholder');
+      if (originalPlaceholder) {
+        textarea.placeholder = originalPlaceholder;
+      }
+    }
+  });
+});
+
+// Help video functionality
+document.getElementById('needHelp').addEventListener('click', (event) => {
+  event.preventDefault();
+  const videoContainer = document.getElementById('videoContainer');
+  const videoFrame = document.getElementById('videoFrame');
+  
+  // Create and set up iframe
+  videoFrame.innerHTML = `
+    <iframe 
+      width="560" 
+      height="315" 
+      src="https://www.youtube.com/embed/1KrVpgcdPqk" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+  `;
+  
+  videoContainer.classList.remove('d-none');
+});
+
+// Close video functionality
+document.querySelector('.close-video').addEventListener('click', () => {
+  const videoContainer = document.getElementById('videoContainer');
+  const videoFrame = document.getElementById('videoFrame');
+  videoFrame.innerHTML = ''; // Remove iframe content
+  videoContainer.classList.add('d-none');
+});
+
+//// Add this to your existing JavaScript
+//document.addEventListener('DOMContentLoaded', () => {
+//  // Force textareas to maximum height
+//  const textareas = document.querySelectorAll('textarea');
+//  textareas.forEach(textarea => {
+//    textarea.style.height = '530px';
+//  });
+//});
