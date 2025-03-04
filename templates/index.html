@@ -1,65 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PM Sorter</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="./static/favicon/favicon.ico">
-    <link rel="stylesheet" href="static/styles.css">
-  </head>
-  <body>
-    <div id="app" class="container mt-5 text-center">
-      <div class="header-container">
-        <h1 class="text-center mb-5 ez-header"><span class="ez-highlight">Ez</span> MM Work Order Entry</h1>
-      </div>
 
-      <!-- Centered container for input groups and button -->
-      <div class="centered-container">
-        <div class="input-wrapper d-flex justify-content-center align-items-center">
-          <!-- Input Group 1 (left) -->
-          <div class="input-group input-group-left">
-            <textarea autofocus id="inputData" class="form-control rounded" rows="5" placeholder="Paste data from excel, or enter one number per line"></textarea>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PM Sorter</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=M+PLUS+Rounded+1c:wght@400;700&display=swap"
+    rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="./static/favicon/favicon.ico">
+  <link rel="stylesheet" href="static/styles.css">
+</head>
+
+<body>
+  <div id="app" class="container mt-5 text-center">
+    <div class="header-container">
+      <h1 class="text-center mb-5 ez-header"><span class="ez-highlight">Ez</span> MM Work Order Entry</h1>
+    </div>
+
+    <!-- Centered container for input groups and button -->
+    <div class="centered-container">
+      <div class="input-wrapper d-flex justify-content-center align-items-center">
+        <!-- Input Group 1 (left) -->
+        <div class="input-group input-group-left">
+          <textarea autofocus id="inputData" class="form-control rounded" rows="5"
+            placeholder="Paste data from excel, or enter one number per line"></textarea>
+        </div>
+
+        <!-- Button in the middle -->
+        <div class="button-container">
+          <button id="runButton" class="btn btn-beige rounded">
+            Find patterns
+          </button>
+          <!-- New toggle switch -->
+          <div class="form-check form-switch small-toggle">
+            <input class="form-check-input" type="checkbox" id="helpTextToggle">
+            <label class="form-check-label" for="helpTextToggle">Help text</label>
           </div>
 
-          <!-- Button in the middle -->
-          <div class="button-container">
-            <button id="runButton" class="btn btn-beige rounded">
-              Find patterns
+          <!-- Modified help link -->
+          <a href="#" id="needHelp" class="help-link">Need help?</a>
+        </div>
+        <!-- Add this at the bottom of the container for the video -->
+        <div id="videoContainer" class="video-container d-none">
+          <div class="video-wrapper">
+            <button type="button" class="close-video btn btn-sm btn-light" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
             </button>
-  <!-- New toggle switch -->
-  <div class="form-check form-switch small-toggle">
-    <input class="form-check-input" type="checkbox" id="helpTextToggle">
-    <label class="form-check-label" for="helpTextToggle">Help text</label>
-  </div>
-  
-  <!-- Modified help link -->
-  <a href="#" id="needHelp" class="help-link">Need help?</a>
-</div>
-<!-- Add this at the bottom of the container for the video -->
-<div id="videoContainer" class="video-container d-none">
-  <div class="video-wrapper">
-    <button type="button" class="close-video btn btn-sm btn-light" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <div id="videoFrame"></div>
-  </div>
-</div>
-          </div>
-
-          <!-- Input Group 2 (right) -->
-          <div class="input-group input-group-right">
-            <textarea id="outputData" class="form-control rounded" rows="5" readonly placeholder="Use the Reassign WO fn in medimizer to make for speedy work order reassignment"></textarea>
+            <div id="videoFrame"></div>
           </div>
         </div>
       </div>
-    </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="static/scripts.js"></script>
-  </body>
+      <!-- Input Group 2 (right) -->
+      <div class="input-group input-group-right">
+        <div id="outputData" class="form-control rounded output-container">
+          <!-- Dynamic content will be inserted here -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="static/scripts.js"></script>
+</body>
+
 </html>

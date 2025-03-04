@@ -29,16 +29,77 @@ function sortAndGroupColumnData(columnData) {
     num => !groupedNumbers.flat().some(group => group.group.includes(num))
   );
 
-  const result = groupedNumbers
-    .filter(group => !outliers.some(outlier => group.group.includes(outlier)))
-    .map((group, index) => `Group ${index + 1}: [${group.min}, ${group.max}]`);
+  // Create HTML output
+  const outputContainer = document.getElementById('outputData');
+  outputContainer.innerHTML = ''; // Clear previous content
+
+  groupedNumbers.forEach((group, index) => {
+    const groupDiv = document.createElement('div');
+    groupDiv.className = 'group-container';
+    
+    const groupLabel = document.createElement('div');
+    groupLabel.className = 'group-label';
+    groupLabel.textContent = `Group ${index + 1}:`;
+    
+    const minButton = createCopyButton(group.min, 'Min');
+    const maxButton = createCopyButton(group.max, 'Max');
+    
+    groupDiv.appendChild(groupLabel);
+    groupDiv.appendChild(minButton);
+    groupDiv.appendChild(maxButton);
+    
+    outputContainer.appendChild(groupDiv);
+  });
 
   if (outliers.length > 0) {
-    result.push(`Outlier: [${outliers.join(', ')}]`);
+    const outlierDiv = document.createElement('div');
+    outlierDiv.className = 'group-container';
+    
+    const outlierLabel = document.createElement('div');
+    outlierLabel.className = 'group-label';
+    outlierLabel.textContent = 'Outliers:';
+    
+    outlierDiv.appendChild(outlierLabel);
+    
+    outliers.forEach(outlier => {
+      outlierDiv.appendChild(createCopyButton(outlier, 'Value'));
+    });
+    
+    outputContainer.appendChild(outlierDiv);
   }
-
-  return result.join('\n');
 }
+
+function createCopyButton(value, label) {
+  const button = document.createElement('button');
+  button.className = 'copy-button';
+  button.textContent = `${label}: ${value}`;
+  
+  button.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(value.toString());
+      
+      // Visual feedback
+      button.classList.add('copied');
+      const originalText = button.textContent;
+      button.textContent = 'Copied!';
+      
+      setTimeout(() => {
+        button.classList.remove('copied');
+        button.textContent = originalText;
+      }, 1500);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  });
+  
+  return button;
+}
+
+// Update the event listener to use the new function
+document.getElementById('runButton').addEventListener('click', () => {
+  const inputData = document.getElementById('inputData').value;
+  sortAndGroupColumnData(inputData);
+});
 
 document.getElementById('runButton').addEventListener('click', () => {
   const inputData = document.getElementById('inputData').value;
@@ -138,13 +199,10 @@ const defaultPlaceholders = {
   outputData: "Use the Reassign WO fn in medimizer to make for speedy work order reassignment"
 };
 
-// Initialize empty placeholders and store defaults on page load
+// Add this new section to initialize the output container placeholder
 document.addEventListener('DOMContentLoaded', () => {
-  const textareas = document.querySelectorAll('textarea');
-  textareas.forEach(textarea => {
-    textarea.setAttribute('data-original-placeholder', textarea.placeholder);
-    textarea.placeholder = '';
-  });
+  const outputContainer = document.getElementById('outputData');
+  outputContainer.setAttribute('data-placeholder', 'Use the Reassign WO fn in medimizer to make for speedy work order reassignment');
 });
 
 // Toggle help text functionality
