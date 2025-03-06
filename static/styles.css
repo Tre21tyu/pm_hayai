@@ -86,21 +86,34 @@ body {
 }
 
 .input-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 30px;
+  justify-content: space-between !important;
+  align-items: center !important; /* Change from flex-start to center */
+  position: relative !important;
 }
 
+/* Make both input boxes equal size */
 .input-group {
-  width: 40%;
-  max-width: 500px;
+  flex: 1;
   margin: 0 3vw;
 }
 
+.input-group-left {
+  flex: 1;
+  width: 40%;
+  max-width: 500px;
+  min-width: 300px;
+}
+
+.input-group-right {
+  flex: 1;
+  width: 40%;
+  max-width: 500px;
+  min-width: 300px;
+  display: block;
+}
+
 textarea {
-  width: 100%;
+  width: 100% !important;
   height: 530px;
   max-height: 530px;
   min-height: 300px;
@@ -109,18 +122,98 @@ textarea {
   box-shadow: 0 0 10px rgba(230, 216, 195, 0.5);
   transition: box-shadow 0.3s ease;
   box-sizing: border-box;
+  display: block;
 }
 
 textarea:focus {
   outline: none;
-  border-color: #d4b886;
+  border-color: #000000;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
 textarea::placeholder {
-  font-size: 1.2em;
+  font-size: 1.4rem;
   color: #888;
   font-weight: bold;
+  opacity: 1 !important;
+}
+
+/* Output container styles */
+.output-container {
+  width: 100% !important;
+  display: block !important;
+  box-sizing: border-box;
+  height: 530px;
+  overflow-y: auto;
+  padding: 15px;
+  background: white;
+  text-align: left;
+  border: 2px solid lightgray;
+  box-shadow: 0 0 10px rgba(230, 216, 195, 0.5);
+  transition: box-shadow 0.3s ease;
+  min-height: 300px;
+}
+
+/* Output container placeholder using class approach */
+.output-container.show-placeholder::before {
+  content: attr(data-placeholder);
+  color: #888;
+  font-size: 1.4rem;
+  font-weight: bold;
+  opacity: 1;
+  display: flex;
+  padding: 0px;
+}
+
+.group-container {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  background: #f8f9fa;
+}
+
+/* Style the group label */
+.group-label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #666;
+  display: block; /* Ensure it's on its own line */
+}
+
+
+/* Make copy buttons bigger */
+.copy-button {
+  background: #f0e6d2;
+  border: none;
+  padding: 12px 20px;
+  margin: 5px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.copy-button:hover {
+  background: #e6d8c3;
+  transform: scale(1.05);
+}
+
+.copy-button.copied {
+  background: #90EE90;
+}
+
+/* Make sure the button container doesn't expand too much */
+.button-container {
+  width: 200px !important;
+  flex: 0 0 200px !important;
+  margin: 0 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 530px !important; /* Match height of text boxes */
+  position: relative !important;
 }
 
 #runButton {
@@ -139,6 +232,26 @@ textarea::placeholder {
   transform: scale(1.1);
   box-shadow: 0 0 15px rgba(240, 230, 210, 0.8);
 }
+
+/* Add paste from clipboard button styling */
+#pasteButton {
+  background-color: #e6d8c3;
+  border: none;
+  color: black;
+  padding: clamp(15px, 2vw, 20px) clamp(30px, 4vw, 40px);
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-weight: bold;
+  white-space: nowrap;
+  margin-top: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 4px;
+}
+
+#pasteButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(230, 216, 195, 0.8);
+}
+
 textarea::-webkit-scrollbar-thumb {
   background-color: #888; /* Color of the scrollbar thumb */
   border-radius: 10px; /* Rounded corners for the thumb */
@@ -237,55 +350,79 @@ textarea::-webkit-scrollbar-track:hover {
   );
   z-index: 10;
 }
-.output-container {
-  height: 530px;
-  overflow-y: auto;
-  padding: 15px;
-  background: white;
-  text-align: left;
+/* Force equal size for input and output boxes */
+.input-group-left, .input-group-right {
+  width: 300px !important;
+  min-width: 300px !important;
+  max-width: 300px !important;
+  flex: 0 0 300px !important;
 }
 
-.group-container {
-  margin-bottom: 15px;
-  padding: 10px;
-  border-radius: 5px;
-  background: #f8f9fa;
+/* Apply the same dimensions to inner elements */
+textarea#inputData, div#outputData {
+  width: 100% !important;
+  height: 530px !important;
+  min-height: 530px !important;
+  max-height: 530px !important;
+  box-sizing: border-box !important;
 }
 
-.group-label {
-  font-weight: bold;
-  margin-bottom: 8px;
-  color: #666;
+/* Adjust spacing to be equal */
+.input-wrapper {
+  justify-content: space-between !important;
+  align-items: flex-start !important;
 }
 
+/* Ensure button container has a fixed width */
+.button-container {
+  width: 200px !important;
+  flex: 0 0 200px !important;
+  margin: 0 20px !important;
+}
+
+/* Ensure the application is properly centered */
+.centered-container {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  max-width: 900px !important; /* Adjust based on your desired total width */
+}
+
+
+/* Change font size of text within the input textarea */
+#inputData {
+  font-size: 1.4rem; /* Adjust this value to your preferred size */
+  line-height: 1.4; /* Helps with readability when font size changes */
+}
+
+/* Keep the placeholder text size different if desired */
+#inputData::placeholder {
+  font-size: 1.4rem; /* This overrides the input font size for placeholders */
+}
+/* Change font size of text within the copy buttons */
 .copy-button {
+  flex: 1; /* Each button takes equal space */
   background: #f0e6d2;
   border: none;
-  padding: 5px 15px;
-  margin: 0 5px;
+  padding: 8px 10px;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: center;
+  min-width: 90px; /* Minimum width to prevent tiny buttons */
+  max-width: 150px; /* Maximum width to prevent overly wide buttons */
 }
 
-.copy-button:hover {
-  background: #e6d8c3;
-  transform: scale(1.05);
-}
-
+/* Optional: Adjust the copied state text if needed */
 .copy-button.copied {
-  background: #90EE90;
+  font-size: 1.0rem; /* Keep consistent with the normal state */
 }
 
-textarea::placeholder {
-    opacity: 1 !important;
-    color: #888 !important;
-}
-
-.output-container::before {
-    content: attr(data-placeholder);
-    color: #888;
-    font-size: 1.2em;
-    font-weight: bold;
-    opacity: 1;
+/* Create a flex container for the buttons */
+.button-row {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+  margin-top: 5px;
 }
